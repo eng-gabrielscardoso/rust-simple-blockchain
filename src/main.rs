@@ -11,5 +11,7 @@ fn main() {
 
     let new_block = Block::new(2, new_blockchain.blocks[0].hash.to_owned(), String::from("All the governments have fallen"));
 
-    println!("{:?}", new_block);
+    new_blockchain.try_add_block(new_block);
+
+    println!("{:?}", new_blockchain);
 }
