@@ -1,3 +1,11 @@
+use core::blockchain::Blockchain;
+
+mod core;
+
 fn main() {
-    println!("Hello, world!");
+    let mut new_blockchain = Blockchain::new();
+
+    new_blockchain.generate_genesis_block();
+
+    println!("{:?}", new_blockchain);
 }
