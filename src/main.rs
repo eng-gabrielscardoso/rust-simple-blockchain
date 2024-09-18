@@ -28,4 +28,6 @@ fn main() {
     println!("{:?}", new_blockchain);
 
     new_blockchain.is_blockchain_valid(&new_blockchain.blocks);
+
+    new_blockchain.blocks = new_blockchain.blockchain_selector(new_blockchain.blocks.to_owned(), new_blockchain.blocks.to_owned()).unwrap();
 }

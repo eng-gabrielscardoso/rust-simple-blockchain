@@ -89,4 +89,33 @@ impl Blockchain {
     println!("The blockchain is valid");
     true
   }
+
+  pub fn blockchain_selector(&self, local: Vec<Block>, remote: Vec<Block>) -> Option<Vec<Block>> {
+    let is_local_valid = self.is_blockchain_valid(&local);
+    let is_remote_valid = self.is_blockchain_valid(&remote);
+
+    match (is_local_valid, is_remote_valid) {
+      (true, true) => {
+        if local.len() >= remote.len() {
+          println!("The local copy is valid");
+          Some(local)
+        } else {
+          println!("The remote copy is valid");
+          Some(remote)
+        }
+      },
+      (true, false) => {
+        println!("The local copy is valid");
+        Some(local)
+      },
+      (false, true) => {
+        println!("The remote copy is valid");
+        Some(remote)
+      },
+      (false, false) => {
+        println!("Both copies are invalid");
+        None
+      }
+    }
+  }
 }
