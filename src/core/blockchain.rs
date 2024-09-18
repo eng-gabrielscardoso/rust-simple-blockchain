@@ -18,7 +18,7 @@ impl Blockchain {
   pub fn generate_genesis_block(&mut self) {
     let genesis_block = Block {
       id: 1,
-      data: String::from("The first block in the chain."),
+      data: String::from("Dreams are messages."),
       nonce: 1,
       hash: digest("Dreams are messages"),
       previous_hash: String::default(),
