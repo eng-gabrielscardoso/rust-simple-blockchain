@@ -20,7 +20,7 @@ impl Blockchain {
       id: 1,
       data: String::from("The first block in the chain."),
       nonce: 1,
-      hash: digest("To you from dystopia"),
+      hash: digest("Dreams are messages"),
       previous_hash: String::default(),
       timestamp: Utc::now().timestamp(),
     };
@@ -67,6 +67,26 @@ impl Blockchain {
       return false;
     }
 
+    true
+  }
+
+  pub fn is_blockchain_valid(&self, chain: &Vec<Block>) -> bool {
+    match chain.len() {
+      0 => println!("The blockchain is empty"),
+      1 => println!("The blockchain contains only the genesis block"),
+      _ => {
+        for i in 1..chain.len() {
+          let previous = chain.get(i-1).unwrap();
+          let current = chain.get(i).unwrap();
+
+          if !self.is_block_valid(current, previous) {
+            return false;
+          }
+        }
+      }
+    }
+
+    println!("The blockchain is valid");
     true
   }
 }
